@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+  <title>Viridiana & Jonathan — Nuestra Boda</title>
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap"
+    rel="stylesheet">
+
+  <!-- Iconos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="locked">
+
+  <!-- =====================================================
+         BARRA DE PROGRESO
+    ====================================================== -->
+  <div class="progress-bar" id="progressBar"></div>
+
+
+  <!-- =====================================================
+         SOBRE DE LA INVITACIÓN
+    ====================================================== -->
+  <div class="envelope-overlay" id="envelopeOverlay">
+
+    <div class="envelope" id="envelope">
+
+      <div class="envelope-back"></div>
+
+      <div class="envelope-body">
+
+        <!-- NOMBRES -->
+        <p class="env-names">
+          Viridiana
+          <span class="amp">&amp;</span>
+          Jonathan
+        </p>
+
+        <!-- CUENTA REGRESIVA -->
+        <div class="envelope-countdown" id="envelopeCountdown">
+
+
+          <div class="env-count-item">
+            <span class="env-count-number" id="envDays">00</span>
+            <span class="env-count-label">Días</span>
+          </div>
+
+          <span class="env-count-separator">:</span>
+
+          <div class="env-count-item">
+            <span class="env-count-number" id="envHours">00</span>
+            <span class="env-count-label">Hrs</span>
+          </div>
+
+          <span class="env-count-separator">:</span>
+
+          <div class="env-count-item">
+            <span class="env-count-number" id="envMinutes">00</span>
+            <span class="env-count-label">Min</span>
+          </div>
+
+          <span class="env-count-separator">:</span>
+
+          <div class="env-count-item">
+            <span class="env-count-number" id="envSeconds">00</span>
+            <span class="env-count-label">Seg</span>
+          </div>
+
+
+        </div>
+
+        <!-- INVITADO -->
+        <p class="env-greeting" id="greetingEnnvelope">
+          Para el comienzo de una nueva historia...
+        </p>
+
+      </div>
+
+      <div class="envelope-flap"></div>
+
+      <!-- SELLO EN EL PICO DE LA SOLAPA -->
+      <button class="wax-seal" id="waxSeal" type="button" aria-label="Abrir invitación">
+
+        <span>V&amp;J</span>
+        <span class="seal-sub">Toca el sello</span>
+
+
+      </button>
+
+    </div>
+  </div>
+
+  <!-- =====================================================
+         CONTENIDO PRINCIPAL
+    ====================================================== -->
+  <main id="mainContent">
+
+
+    <!-- =================================================
+             PORTADA
+        ================================================== -->
+    <section class="block hero-block block-terracotta">
+
+      <div class="hero-inner">
+
+        <p class="hero-eyebrow" data-reveal="fade-up">
+          CON LA BENDICIÓN DE DIOS
+        </p>
+
+        <div class="hero-line" data-reveal="fade-up"></div>
+
+        <p class="greeting" id="greetingHero" data-reveal="fade-up">
+
+          Querido Invitado
+
+        </p>
+
+        <h1 class="hero-names" data-reveal="zoom-in" data-reveal-delay="1">
+
+          <span>Viridiana</span>
+
+          <span class="amp">&amp;</span>
+
+          <span>Jonathan</span>
+
+       
+
+        <div class="hero-line" data-reveal="fade-up" data-reveal-delay="2">
+        </div>
+
+        <p class="hero-invitation" data-reveal="fade-up" data-reveal-delay="3">
+
+          ❝ Tenemos el honor de invitarle
+          a celebrar con nosotros nuestra Boda.❞ 
+        </p>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+             FRASE BÍBLICA
+        ================================================== -->
+    <section class="block block-cream verse-block">
+
+      <div class="monogram" data-reveal="zoom-in">
+
+        V
+        <span class="mono-amp">&amp;</span>
+        J
+
+      </div>
+
+      <div class="verse-ornament" data-reveal="fade-up">
+        ❦
+      </div>
+
+      <blockquote class="bible-verse typewriter-text" id="bibleVerse" data-reveal="fade-up" data-reveal-delay="1">
+      </blockquote>
+
+      <cite class="verse-ref" id="verseRef" data-reveal="fade-up" data-reveal-delay="2">
+
+        R u t  1 : 1 6
+
+      </cite>
+
+    </section>
+
+
+    <!-- =================================================
+             FECHA / CUENTA REGRESIVA
+        ================================================== -->
+    <section class="block block-terracotta countdown-block">
+
+      <div class="countdown-intro">
+
+        <p class="section-kicker" data-reveal="fade-up">
+
+          RESERVA LA FECHA PARA 
+
+        </p>
+
+        <h2 class="countdown-title" data-reveal="fade-up" data-reveal-delay="1">
+
+          Nuestro gran día
+
+        </h2>
+
+        <p class="countdown-date" data-reveal="fade-up" data-reveal-delay="2">
+
+          ❝ Viernes 11 de Septiembre de 2026  ❞ 
+
+        </p>
+
+         <p class="countdown-faltan" data-reveal="fade-up" data-reveal-delay="3">
+
+         ·  F   A   L   T   A   N · 
+        </p>
+        
+
+      </div>
+
+
+      <div class="countdown" id="countdown" aria-live="polite" data-reveal="fade-up" data-reveal-delay="2">
+
+        <div class="cd-item">
+
+          <span class="cd-num" id="cdDays">
+            00
+          </span>
+
+          <span class="cd-label">
+            Días
+          </span>
+
+        </div>
+
+
+        <div class="cd-sep">
+          :
+        </div>
+
+
+        <div class="cd-item">
+
+          <span class="cd-num" id="cdHours">
+            00
+          </span>
+
+          <span class="cd-label">
+            Horas
+          </span>
+
+        </div>
+
+
+        <div class="cd-sep">
+          :
+        </div>
+
+
+        <div class="cd-item">
+
+          <span class="cd-num" id="cdMinutes">
+            00
+          </span>
+
+          <span class="cd-label">
+            Minutos
+          </span>
+
+        </div>
+
+
+        <div class="cd-sep">
+          :
+        </div>
+
+
+        <div class="cd-item">
+
+          <span class="cd-num" id="cdSeconds">
+            00
+          </span>
+
+          <span class="cd-label">
+            Segundos
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="countdown-footer" data-reveal="fade-up">
+
+        <div class="gold-divider"></div>
+
+        <p class="blessing-text">
+          Con la bendición de nuestros padres
+        </p>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         CEREMONIA
+================================================== -->
+<section class="block block-cream ceremony-block">
+
+  <p class="section-label" data-reveal="fade-up">
+    EL GRAN DÍA
+  </p>
+
+  <div class="ceremony-content" data-reveal="fade-up">
+
+    <span class="location-number">
+      01
+    </span>
+
+    <h2 class="location-title">
+      Ceremonia
+    </h2>
+
+    <div class="gold-divider"></div>
+
+    <p class="location-subtitle">
+      Culto de Acción de Gracias
+    </p>
+
+    <p class="info-text">
+      Templo <strong>Eben-Ezer INP</strong>
+    </p>
+
+    <p class="location-address">
+      Bernardo de Gálvez #869<br>
+      Col. Virreyes Obrera
+    </p>
+
+    <div class="hour-badge">
+      <span class="hour-label">HORA</span>
+      <span class="hour-value">4:00 pm</span>
+    </div>
+
+    <!-- Mapa de la iglesia -->
+    <div class="map-wrap">
+      <iframe title="Ubicación Templo Eben-Ezer INP"
+        src="https://maps.google.com/maps?q=Bernardo%20de%20G%C3%A1lvez%20869%20Saltillo&t=&z=15&ie=UTF8&iwloc=&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <a class="gold-button" href="https://maps.app.goo.gl/zMJF2GDofQdNfZ9d8" target="_blank" rel="noopener noreferrer">
+      <i class="fa-solid fa-location-dot"></i>
+      Ver ubicación
+    </a>
+
+  </div>
+
+</section>
+
+
+
+
+    <!-- =================================================
+             RECEPCIÓN
+        ================================================== -->
+    <section class="block reception-block">
+
+      <div class="reception-content" data-reveal="fade-up">
+
+        <span class="location-number">
+          02
+        </span>
+
+        <p class="section-label">
+          DESPUÉS DE LA CEREMONIA
+        </p>
+
+        <h2 class="location-title">
+          Recepción
+        </h2>
+
+        <div class="gold-divider"></div>
+
+        <p class="location-subtitle">
+          Quinta San Juana
+        </p>
+
+        <p class="location-address">
+          Los esperamos para celebrar
+          juntos este día tan especial.
+        </p>
+
+        <div class="hour-badge">
+
+          <span class="hour-label">
+            HORA
+          </span>
+
+          <span class="hour-value">
+            7:00 pm
+          </span>
+
+        </div>
+
+        <div class="map-wrap">
+
+          <iframe title="Ubicación Quinta San Juana"
+            src="https://maps.google.com/maps?q=Quinta%20San%20Juana&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade" allowfullscreen>
+          </iframe>
+
+        </div>
+
+        <a class="gold-button" href="https://maps.app.goo.gl/5PKhc8atBqSutRtt9?g_st=com.apple.sharing.quick-note" target="_blank"
+          rel="noopener noreferrer">
+
+          <i class="fa-solid fa-location-dot"></i>
+          Ver ubicación
+
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- =================================================
+             ITINERARIO
+        ================================================== -->
+    <section class="block block-cream itinerary-block">
+
+      <p class="section-label" data-reveal="fade-up">
+
+        LA CELEBRACIÓN
+
+      </p>
+
+      <h2 class="itinerary-title" data-reveal="fade-up">
+
+        Itinerario
+
+      </h2>
+
+
+      <div class="timeline">
+
+        <div class="timeline-item" data-reveal="slide-right">
+
+          <div class="timeline-content">
+
+            <span class="timeline-time">
+              16:00
+            </span>
+
+            <span class="timeline-label">
+              Ceremonia
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="timeline-item" data-reveal="slide-right" data-reveal-delay="1">
+
+          <div class="timeline-content">
+
+            <span class="timeline-time">
+              19:00
+            </span>
+
+            <span class="timeline-label">
+              Recepción
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="timeline-item" data-reveal="slide-right" data-reveal-delay="2">
+
+          <div class="timeline-content">
+
+            <span class="timeline-time">
+              20:00
+            </span>
+
+            <span class="timeline-label">
+              Banquete
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="timeline-item" data-reveal="slide-right" data-reveal-delay="3">
+
+          <div class="timeline-content">
+
+            <span class="timeline-time">
+              21:30
+            </span>
+
+            <span class="timeline-label">
+              Baile
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+  <!-- Restricción especial -->
+  <div class="restriction-note" data-reveal="fade-up">
+    🍷⃠    NO BEBIDAS ALCHOLICAS 🍷⃠
+  </div>
+
+    </section>
+
+    <!-- =================================================
+             CÓDIGO DE VESTIMENTA
+        ================================================== -->
+    <section class="block block-cream dresscode-block">
+
+      <div class="dresscode-card" data-reveal="zoom-in">
+
+        <p class="section-label">
+          CÓDIGO DE VESTIMENTA
+        </p>
+
+        <h2 class="dresscode-title">
+          Formal
+        </h2>
+
+        <div class="gold-divider"></div>
+
+        <p class="dresscode-text">
+          Celebremos este día con elegancia.
+        </p>
+
+        <div class="dresscode-icons">
+
+          <i class="fa-solid fa-user-tie"></i>
+
+          <span class="dresscode-divider">
+            &amp;
+          </span>
+
+          <i class="fa-solid fa-person-dress"></i>
+
+        </div>
+
+        <p class="dresscode-warning">
+
+          Les pedimos amablemente
+          evitar prendas en color
+          <strong> BLANCO · ROJO </strong>
+
+        </p>
+
+      </div>
+
+    </section>
+
+    <!-- =================================================
+             RSVP
+        ================================================== -->
+    <section class="block rsvp-block block-cream">
+
+      <div class="rsvp-inner" data-reveal="fade-up">
+
+        <p class="section-label">
+          TU PRESENCIA ES MUY ESPECIAL
+        </p>
+
+        <h2 class="rsvp-title">
+          ¿Nos acompañas?
+        </h2>
+
+        <p class="rsvp-subtitle">
+          Nos encantará celebrar
+          este momento contigo.
+        </p>
+
+        <div class="gold-divider"></div>
+
+        <button id="rsvpBtn" class="gold-button rsvp-button" type="button">
+
+          <i class="fa-solid fa-check"></i>
+
+          Confirmar asistencia
+
+        </button>
+
+        <p id="rsvpMessage" class="rsvp-message" aria-live="polite">
+        </p>
+
+        <p class="adults-note">
+
+          · Favor de confirmar asistencia ·
+
+        </p>
+
+      </div>
+
+    </section>
+
+
+
+
+    <!-- =================================================
+             CIERRE
+        ================================================== -->
+    <footer class="footer-block" data-reveal="fade-up">
+
+      <div class="footer-monogram">
+        V <span>&amp;</span> J
+      </div>
+
+      <div class="gold-divider"></div>
+
+      <p class="footer-signature">
+        Con amor
+      </p>
+
+      <p class="footer-names">
+        Viridiana &amp; Jonathan
+      </p>
+
+      <p class="footer-date">
+        11 · 09 · 2026
+      </p>
+
+    </footer>
+
+
+  </main>
+
+
+  <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+  <script src="script.js"></script>
+
+</body>
+
+</html>

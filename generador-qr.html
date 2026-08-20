@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Generador de QR — Invitaciones</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* ---- Ajustes propios de esta herramienta (no toca styles.css) ---- */
+  body {
+    padding: 40px 16px;
+  }
+
+  .qr-page-wrapper {
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  .qr-header {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  .qr-eyebrow {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    margin-bottom: 10px;
+  }
+
+  .qr-title {
+    font-family: var(--font-script);
+    font-size: 2.4rem;
+    color: var(--terracotta);
+    margin-bottom: 12px;
+  }
+
+  .qr-gold-divider {
+    width: 80px;
+    height: 1px;
+    background: var(--gold);
+    margin: 0 auto 16px;
+  }
+
+  .qr-intro {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  .qr-card {
+    background: var(--cream-light);
+    border: 1px solid var(--gold-light);
+    border-radius: 12px;
+    box-shadow: var(--shadow-soft);
+    padding: 28px 24px;
+    margin-top: 24px;
+  }
+
+  .qr-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .qr-form label {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .qr-form input {
+    width: 100%;
+    padding: 12px 14px;
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    color: var(--text);
+    background: #fffefc;
+    border: 1px solid var(--gold);
+    border-radius: 6px;
+  }
+
+  .qr-form input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(197, 160, 89, 0.35);
+  }
+
+  .qr-submit {
+    background: linear-gradient(135deg, var(--gold-light), var(--gold-dark));
+    color: var(--text-light);
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform .25s var(--ease), box-shadow .25s var(--ease);
+  }
+
+  .qr-submit:hover {
+    transform: scale(1.02);
+    box-shadow: var(--shadow-soft);
+  }
+
+  #qrResults {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .qr-pass-card {
+    background: var(--cream-light);
+    border: 1px solid var(--gold-light);
+    border-radius: 12px;
+    box-shadow: var(--shadow-soft);
+    padding: 24px;
+    text-align: center;
+  }
+
+  .qr-pass-label {
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 4px;
+  }
+
+  .qr-pass-name {
+    font-family: var(--font-body);
+    font-size: 1.15rem;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+
+  .qr-canvas-box {
+    display: inline-block;
+    padding: 14px;
+    background: #fff;
+    border: 2px solid var(--gold);
+    border-radius: 8px;
+  }
+
+  .qr-pass-link {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    word-break: break-all;
+    color: var(--text-muted);
+    margin-top: 14px;
+  }
+
+  .qr-download-btn {
+    margin-top: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--terracotta);
+    color: var(--text-light);
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform .25s var(--ease);
+  }
+
+  .qr-download-btn:hover {
+    transform: scale(1.03);
+  }
+
+  .qr-error {
+    color: var(--terracotta);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    text-align: center;
+    margin-top: 8px;
+  }
+</style>
+</head>
+<body>
+
+<div class="qr-page-wrapper">
+
+  <header class="qr-header">
+    <p class="qr-eyebrow">Herramienta interna</p>
+    <h1 class="qr-title">Generador de QR</h1>
+    <div class="qr-gold-divider"></div>
+    <p class="qr-intro">
+      Genera un código QR individual por cada pase del invitado.
+      Cada código enlaza a la pantalla de bienvenida del staff.
+    </p>
+  </header>
+
+  <section class="qr-card">
+    <form class="qr-form" id="qrForm">
+      <div>
+        <label for="guestNameInput">Nombre del invitado / familia</label>
+        <input type="text" id="guestNameInput" placeholder="Ej. Familia Pérez" required>
+      </div>
+      <div>
+        <label for="guestPassesInput">Número de pases</label>
+        <input type="number" id="guestPassesInput" min="1" step="1" value="1" required>
+      </div>
+      <button type="submit" class="qr-submit">Generar códigos QR</button>
+    </form>
+    <p class="qr-error" id="qrError"></p>
+  </section>
+
+  <div id="qrResults"></div>
+
+</div>
+
+<script>
+  const qrForm = document.getElementById('qrForm');
+  const qrResults = document.getElementById('qrResults');
+  const qrError = document.getElementById('qrError');
+
+  function getBaseUrl() {
+    // Reemplaza este archivo por bienvenido.html manteniendo la misma ruta
+    return window.location.href.replace('generador-qr.html', 'bienvenido.html');
+  }
+
+  function descargarQR(canvas, filename) {
+    const link = document.createElement('a');
+    link.href = canvas.toDataURL('image/png');
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  qrForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    qrError.textContent = '';
+    qrResults.innerHTML = '';
+
+    const rawName = document.getElementById('guestNameInput').value.trim();
+    const totalPasses = parseInt(document.getElementById('guestPassesInput').value, 10);
+
+    if (!rawName) {
+      qrError.textContent = 'Por favor ingresa el nombre del invitado o familia.';
+      return;
+    }
+
+    if (!totalPasses || totalPasses < 1) {
+      qrError.textContent = 'El número de pases debe ser al menos 1.';
+      return;
+    }
+
+    const formattedName = rawName.replace(/\s+/g, '_');
+    const baseUrl = getBaseUrl();
+
+    for (let i = 1; i <= totalPasses; i++) {
+      const paseParam = i + '_de_' + totalPasses;
+      const finalUrl = baseUrl + '?invitado=' + encodeURIComponent(formattedName) + '&pase=' + encodeURIComponent(paseParam);
+
+      // ---- Tarjeta del pase ----
+      const card = document.createElement('div');
+      card.className = 'qr-pass-card';
+
+      const passLabel = document.createElement('p');
+      passLabel.className = 'qr-pass-label';
+      passLabel.textContent = 'Pase ' + i + ' de ' + totalPasses;
+
+      const guestLabel = document.createElement('p');
+      guestLabel.className = 'qr-pass-name';
+      guestLabel.textContent = rawName;
+
+      const canvasBox = document.createElement('div');
+      canvasBox.className = 'qr-canvas-box';
+
+      const linkText = document.createElement('p');
+      linkText.className = 'qr-pass-link';
+      linkText.textContent = finalUrl;
+
+      const downloadBtn = document.createElement('button');
+      downloadBtn.type = 'button';
+      downloadBtn.className = 'qr-download-btn';
+      downloadBtn.innerHTML = '⬇ Descargar imagen';
+
+      card.appendChild(passLabel);
+      card.appendChild(guestLabel);
+      card.appendChild(canvasBox);
+      card.appendChild(linkText);
+      card.appendChild(downloadBtn);
+      qrResults.appendChild(card);
+
+      // ---- Generar el QR dentro de la caja ----
+      new QRCode(canvasBox, {
+        text: finalUrl,
+        width: 220,
+        height: 220,
+        colorDark: '#3d2a1c',
+        colorLight: '#ffffff',
+        correctLevel: QRCode.CorrectLevel.H
+      });
+
+      // qrcodejs crea un <canvas> (y a veces también un <img>) dentro del contenedor
+      downloadBtn.addEventListener('click', function () {
+        const canvas = canvasBox.querySelector('canvas');
+        const filename = 'QR_' + formattedName + '_Pase_' + i + '_de_' + totalPasses + '.png';
+        if (canvas) {
+          descargarQR(canvas, filename);
+        } else {
+          const img = canvasBox.querySelector('img');
+          if (img) {
+            const link = document.createElement('a');
+            link.href = img.src;
+            link.download = filename;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+          }
+        }
+      });
+    }
+  });
+</script>
+
+</body>
+</html>

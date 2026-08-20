@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Bienvenido — Viridiana &amp; Jonathan</title>
+
+<!-- Fuentes -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+
+<!-- Iconos -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<!-- Estilos base de la boda -->
+<link rel="stylesheet" href="styles.css">
+
+<style>
+  /* ---- Estilos propios de esta pantalla (no toca styles.css) ---- */
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 24px 16px;
+    background: var(--terracotta);
+  }
+
+  .bienvenido-card {
+    width: 100%;
+    max-width: 420px;
+    background: var(--cream-light);
+    border: 1px solid var(--gold-light);
+    border-radius: 16px;
+    box-shadow: var(--shadow-deep);
+    padding: 40px 28px;
+    text-align: center;
+  }
+
+  .bienvenido-monogram {
+    font-family: var(--font-script);
+    font-size: 2.6rem;
+    color: var(--terracotta);
+    margin-bottom: 6px;
+  }
+
+  .bienvenido-monogram span {
+    color: var(--gold-dark);
+    font-family: var(--font-body);
+    font-style: italic;
+    margin: 0 6px;
+  }
+
+  .bienvenido-divider {
+    width: 90px;
+    height: 1px;
+    background: var(--gold);
+    margin: 16px auto 24px;
+  }
+
+  .status-icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
+  }
+
+  .status-icon.valid { color: #4a7c59; }
+  .status-icon.invalid { color: var(--terracotta); }
+
+  .status-title {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .status-title.valid { color: #4a7c59; }
+  .status-title.invalid { color: var(--terracotta); }
+
+  .guest-info {
+    background: var(--cream);
+    border: 1px solid var(--gold-light);
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 12px;
+  }
+
+  .guest-field {
+    margin-bottom: 14px;
+  }
+
+  .guest-field:last-child {
+    margin-bottom: 0;
+  }
+
+  .guest-field-label {
+    font-family: var(--font-heading);
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .guest-field-value {
+    font-family: var(--font-body);
+    font-size: 1.3rem;
+    color: var(--text);
+  }
+
+  .bienvenido-footer {
+    margin-top: 28px;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--text-muted);
+  }
+</style>
+</head>
+
+<body>
+
+  <main class="bienvenido-card">
+
+    <p class="bienvenido-monogram">V <span>&amp;</span> J</p>
+    <div class="bienvenido-divider"></div>
+
+    <div id="resultado"></div>
+
+    <p class="bienvenido-footer">11 · 09 · 2026 — Con amor, Viridiana &amp; Jonathan</p>
+
+  </main>
+
+  <script>
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const invitadoParam = params.get('invitado');
+      const paseParam = params.get('pase');
+
+      const resultado = document.getElementById('resultado');
+
+      function mostrarValido(nombre, pase) {
+        const nombreLegible = nombre.replace(/_/g, ' ');
+        const paseLegible = pase.replace(/_de_/g, ' de ').replace(/_/g, ' ');
+
+        resultado.innerHTML = `
+          <i class="fa-solid fa-circle-check status-icon valid"></i>
+          <h1 class="status-title valid">¡Bienvenido(a)! Pase Válido</h1>
+          <div class="guest-info">
+            <div class="guest-field">
+              <span class="guest-field-label">Invitado / Familia</span>
+              <span class="guest-field-value">${nombreLegible}</span>
+            </div>
+            <div class="guest-field">
+              <span class="guest-field-label">Número de pase</span>
+              <span class="guest-field-value">${paseLegible}</span>
+            </div>
+          </div>
+        `;
+      }
+
+      function mostrarInvalido() {
+        resultado.innerHTML = `
+          <i class="fa-solid fa-circle-xmark status-icon invalid"></i>
+          <h1 class="status-title invalid">Código no válido</h1>
+          <p class="bienvenido-footer" style="margin-top:0;">
+            No se encontró información del invitado en este enlace.
+          </p>
+        `;
+      }
+
+      if (invitadoParam && paseParam) {
+        mostrarValido(invitadoParam, paseParam);
+      } else {
+        mostrarInvalido();
+      }
+    })();
+  </script>
+
+</body>
+</html>
