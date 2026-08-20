@@ -150,6 +150,10 @@
 
     </section>
 
+    <section class="block photo-block" data-reveal>
+  <img src="musica/foto.jpg" alt="Viridiana y Jonathan" class="photo-img">
+</section>
+
 
 
     <!-- =================================================
@@ -484,11 +488,11 @@
           <div class="timeline-content">
 
             <span class="timeline-time">
-              20:30
+              20:00
             </span>
 
             <span class="timeline-label">
-              Baile 
+              Banquete
             </span>
 
           </div>
@@ -501,11 +505,11 @@
           <div class="timeline-content">
 
             <span class="timeline-time">
-              22:00
+              21:30
             </span>
 
             <span class="timeline-label">
-              Banquete
+              Baile
             </span>
 
           </div>
@@ -645,20 +649,11 @@
          JAVASCRIPT
     ====================================================== -->
   <script src="script.js"></script>
-
-<!-- Aquí termina tu contenido de invitación -->
-
 <!-- Música de fondo -->
-<audio id="bgMusic" loop>
+<audio autoplay loop>
   <source src="musica/instrumental.mp3" type="audio/mpeg">
+  Tu navegador no soporta audio.
 </audio>
-
-<script>
-  const music = document.getElementById('bgMusic');
-  document.addEventListener('click', () => {
-    music.play(); // empieza al primer clic
-  }, { once: true });
-</script>
 
 </body>
 
